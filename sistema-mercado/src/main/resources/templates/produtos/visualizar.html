@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header('Detalhes do Produto')}"></head>
+<body>
+    <div class="container mt-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h1 th:text="${produto.nome}">Nome do Produto</h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Código de Barras: 
+                    <span th:text="${produto.codigoBarras}" class="text-muted fw-normal">...</span>
+                </h5>
+                
+                <p class="card-text mt-3">
+                    <strong>Descrição:</strong><br>
+                    <span th:text="${produto.descricao}">...</span>
+                </p>
+                
+                <hr>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <strong>Preço:</strong>
+                        <p class="fs-4" th:text="${#numbers.formatCurrency(produto.preco)}">R$ 0,00</p>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Estoque:</strong>
+                        <p class="fs-4" th:text="${produto.quantidadeEstoque}">0</p>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>Categoria:</strong>
+                        <p class="fs-4" th:text="${produto.categoria}">N/A</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <a th:href="@{/produtos/editar/{id}(id=${produto.id})}" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+                <a href="/produtos" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
